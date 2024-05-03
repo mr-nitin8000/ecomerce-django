@@ -26,8 +26,10 @@ urlpatterns = [
     path('signup/', views.signuphandle),
     path('checkout/', views.checkout),
     path('cart/', views.cart),
-    path('prodes/', views.product_des),
+    path('prodes/<int:id>/', views.product_des),
     path('men/', views.men),
+    path('women/', views.women),
+    path('kids/', views.kids),
     path('about/', views.about),
     path('contact/', views.contact),
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
