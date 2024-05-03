@@ -20,7 +20,21 @@
       rel="stylesheet"
     />
   </head>
-
+<style>
+  .logout-btn {
+    border-radius: 20px;
+    background: red;
+    outline: none;
+    border: none;
+    padding: 13px;
+    margin-right: 12px;
+    color: white;
+}
+.user-name {
+    height: 100%;
+    margin-bottom: 1rem;
+}
+</style>
   <body>
     <div class="header">
       <div class="container">
@@ -42,6 +56,9 @@
               </li>
               <li><a href="/about/">About</a></li>
               <li><a href="/contact/">Contact</a></li>
+              {% if user.is_authenticated %}
+              
+              {% else %}
               <li class="dropdown">
                 <button class="dropbtn">Accounts</button>
                 <div class="dropdown-content">
@@ -49,10 +66,18 @@
                   <a href="/signup/">Sign Up</a>
                 </div>
               </li>
+              {% endif %}
+              
             </ul>
           </nav>
+          {% if user.is_authenticated %} <div class="user-name"> Welcome {{request.user}}</div>
           <a href="/cart/"><i class="fa-solid fa-cart-shopping cart"></i> </a>
-          <i class="fa-solid fa-bars menu"></i>
+          <a href="/cart/"
+              <li><a href="/logout/"><button class="logout-btn">Logout</button>
+              </a></li>
+              </a>
+          {% else %}
+          {% endif %}
         </div>
         <div class="row" id="row">
           <div class="col-2" style="font-family: cursive">
@@ -107,28 +132,82 @@
     </div>
 
     <!-- features product--------------- -->
-    <a href="/prodes/ ">
-      <div class="small-container">
-        <h2 class="title">Featured Products</h2>
-        <div class="row">
+
+    <div class="small-container">
+      <h2 class="title">Featured Products</h2>
+
+      <div class="row">
+        {% for i in data %}
+        <a href="/prodes/{{i.id}} ">
           <div class="col-4">
-            <img src="{% static "images/tops1.webp" %} " alt=" " class="col4-img
-            " />
-            <h4>Trimmer</h4>
-            <p>$50.00</p>
+            <img src="/media/{{i.image}}" alt=" " class="col4-img" />
+            <h4>{{i.title}}</h4>
+            <p>{{i.price}}</p>
             <div class="rating">
               <i class="fa-solid fa-star"></i>
               <i class="fa-solid fa-star"></i>
               <i class="fa-solid fa-star"></i>
               <i class="fa-solid fa-star"></i>
             </div>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+
+      <h2 class="title">Latest Product</h2>
+      <div class="row">
+        <div class="col-4">
+          <img src="{% static "images/boysjeans1.webp" %} " alt=" "
+          class="col4-img " />
+          <h4>Trimmer</h4>
+          <p>$50.00</p>
+          <div class="rating">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+        </div>
+        <div class="col-4">
+          <img src="{% static "images/boysshirt1.webp" %} " alt=" "
+          class="col4-img " />
+          <h4>Trimmer</h4>
+          <p>$50.00</p>
+          <div class="rating">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+        </div>
+        <div class="col-4">
+          <img src="{% static "images/boysshirt2.webp" %} " alt=" "
+          class="col4-img " />
+          <h4>Trimmer</h4>
+          <p>$50.00</p>
+          <div class="rating">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+        </div>
+        <div class="col-4">
+          <img src="{% static "images/boyt-shirt1.webp" %} " alt=" "
+          class="col4-img " />
+          <h4>Trimmer</h4>
+          <p>$50.00</p>
+          <div class="rating">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
           </div>
         </div>
 
-        <h2 class="title">Latest Product</h2>
         <div class="row">
           <div class="col-4">
-            <img src="{% static "images/boysjeans1.webp" %} " alt=" "
+            <img src="{% static "images/boysjeans2.webp" %} " alt=" "
             class="col4-img " />
             <h4>Trimmer</h4>
             <p>$50.00</p>
@@ -140,7 +219,7 @@
             </div>
           </div>
           <div class="col-4">
-            <img src="{% static "images/boysshirt1.webp" %} " alt=" "
+            <img src="{% static "images/boysjeans3.webp" %} " alt=" "
             class="col4-img " />
             <h4>Trimmer</h4>
             <p>$50.00</p>
@@ -152,7 +231,7 @@
             </div>
           </div>
           <div class="col-4">
-            <img src="{% static "images/boysshirt2.webp" %} " alt=" "
+            <img src="{% static "images/boyt-shirt2.webp" %} " alt=" "
             class="col4-img " />
             <h4>Trimmer</h4>
             <p>$50.00</p>
@@ -164,7 +243,7 @@
             </div>
           </div>
           <div class="col-4">
-            <img src="{% static "images/boyt-shirt1.webp" %} " alt=" "
+            <img src="{% static "images/boyt-shirt3.webp" %} " alt=" "
             class="col4-img " />
             <h4>Trimmer</h4>
             <p>$50.00</p>
@@ -173,62 +252,11 @@
               <i class="fa-solid fa-star"></i>
               <i class="fa-solid fa-star"></i>
               <i class="fa-solid fa-star"></i>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-4">
-              <img src="{% static "images/boysjeans2.webp" %} " alt=" "
-              class="col4-img " />
-              <h4>Trimmer</h4>
-              <p>$50.00</p>
-              <div class="rating">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-              </div>
-            </div>
-            <div class="col-4">
-              <img src="{% static "images/boysjeans3.webp" %} " alt=" "
-              class="col4-img " />
-              <h4>Trimmer</h4>
-              <p>$50.00</p>
-              <div class="rating">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-              </div>
-            </div>
-            <div class="col-4">
-              <img src="{% static "images/boyt-shirt2.webp" %} " alt=" "
-              class="col4-img " />
-              <h4>Trimmer</h4>
-              <p>$50.00</p>
-              <div class="rating">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-              </div>
-            </div>
-            <div class="col-4">
-              <img src="{% static "images/boyt-shirt3.webp" %} " alt=" "
-              class="col4-img " />
-              <h4>Trimmer</h4>
-              <p>$50.00</p>
-              <div class="rating">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-              </div>
             </div>
           </div>
         </div>
       </div>
-    </a>
+    </div>
 
     <!-- ---------------offers--------------- -->
 

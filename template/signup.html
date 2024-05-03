@@ -24,12 +24,16 @@
           <hr />
 
           <form
-            action="/create-account/"
+            action=""
             method="post"
             novalidate
             class="shadow p-5 bg-light rounded"
           >
+            {% csrf_token %}
             <div class="mb-3">
+              {% if messages %} {% for i in messages %}
+              <div class="alert alert-success" role="alert">{{i}}</div>
+              {% endfor %} {% endif %}
               <div class="mb-3">
                 <label for="formGroupExampleInput" class="form-label"
                   >Username</label

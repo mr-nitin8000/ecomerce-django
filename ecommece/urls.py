@@ -32,4 +32,5 @@ urlpatterns = [
     path('kids/', views.kids),
     path('about/', views.about),
     path('contact/', views.contact),
+    path('logout/', views.logoutHandle),
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

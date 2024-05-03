@@ -33,6 +33,7 @@
             novalidate
             class="shadow p-5 bg-light rounded"
           >
+            {% csrf_token %}
             <div class="mb-3">
               <label for="formGroupExampleInput" class="form-label"
                 >Username</label
