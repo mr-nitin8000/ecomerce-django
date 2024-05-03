@@ -26,9 +26,12 @@ def contact(request):
 
 def men(request):
     data = Product.objects.all()
-    for i in data:
-        print(i.title)
-        print(i.size)
-        print(i.description)
-        print(i.price)
-    return render(request,'men.html')
+    # for i in data:
+    #     print(i.title)
+    #     print(i.size)
+    #     print(i.description)
+    #     print(i.price)
+    context = {
+        'data':data
+    }
+    return render(request,'men.html',context)
